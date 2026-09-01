@@ -1,0 +1,139 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile settings including display name, bio, and avatar.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "The unique Firebase Auth UID of the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "The user's Google account email."
+        },
+        "displayName": {
+          "type": "string",
+          "maxLength": 80,
+          "description": "User display name."
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "URL or compressed avatar data string for the user."
+        },
+        "bio": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "User personal reflection goal or bio."
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of the latest profile update."
+        }
+      },
+      "required": ["uid"]
+    },
+    "JournalEntry": {
+      "title": "JournalEntry",
+      "description": "User-isolated reflection and brainstorming journal document.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique entry identifier."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner Firebase Auth UID."
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Title of the journal reflection."
+        },
+        "category": {
+          "type": "string",
+          "enum": ["Reflection", "Brainstorm", "Personal", "Work", "Gratitude", "Goals", "Creative"],
+          "description": "Journal categorization bucket."
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags associated with the entry."
+        },
+        "aiMode": {
+          "type": "string",
+          "enum": ["reflection", "summary", "brainstorm", "advice"],
+          "description": "Active AI reasoning mode."
+        },
+        "turns": {
+          "type": "array",
+          "description": "Sequential user-model conversational turns."
+        },
+        "summary": {
+          "type": "string",
+          "description": "Gemini synthesized overarching summary and takeaways."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO creation timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO update timestamp."
+        }
+      },
+      "required": ["id", "userId", "title"]
+    },
+    "InteractionRecord": {
+      "title": "InteractionRecord",
+      "description": "Granular user interaction log for auditing and multi-model provenance.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique interaction record ID."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner Firebase Auth UID."
+        },
+        "prompt": {
+          "type": "string",
+          "description": "User input prompt."
+        },
+        "response": {
+          "type": "string",
+          "description": "Model response."
+        },
+        "mode": {
+          "type": "string",
+          "description": "AI prompt mode."
+        },
+        "modelUsed": {
+          "type": "string",
+          "description": "Name of the Gemini model used from fallback ladder."
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "ISO timestamp of turn interaction."
+        }
+      },
+      "required": ["id", "userId", "prompt", "response"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/profile/{profileDoc}": {
+      "schema": "UserProfile",
+      "description": "Dedicated user profile data linked to user authentication ID."
+    },
+    "/users/{userId}/entries/{entryId}": {
+      "schema": "JournalEntry",
+      "description": "User-isolated journal entries collection."
+    },
+    "/users/{userId}/interactions/{interactionId}": {
+      "schema": "InteractionRecord",
+      "description": "Audit trail of Gemini multi-turn interactions."
+    }
+  }
+}

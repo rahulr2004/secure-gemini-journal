@@ -1,0 +1,7 @@
+{
+  "name": "Gemini AI Journal & Reflections",
+  "description": "Authenticated interactive personal reflection journal and AI brainstorming assistant with isolated Cloud Firestore persistence and Gemini 3.6 Flash.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
