@@ -799,7 +799,7 @@ export const AdminView: React.FC<AdminViewProps> = ({ user, onBack }) => {
 
                       <div className="space-y-3 text-xs">
                         <div className="p-3 bg-amber-50 rounded-xl text-amber-900 border border-amber-200 text-[11px]">
-                          <strong>Privacy Notice:</strong> In accordance with our zero-knowledge isolation principle, raw reflection texts, personal goals, and location names are masked from this inspector.
+                          <strong>Privacy Notice:</strong> In accordance with our zero-knowledge isolation principle, raw reflection texts, personal goals, and private memories are masked from this inspector.
                         </div>
 
                         <div className="grid grid-cols-2 gap-3">

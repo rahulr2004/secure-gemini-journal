@@ -100,8 +100,7 @@ export const SundaySynthesisBanner: React.FC<SundaySynthesisBannerProps> = ({
           userId: user.uid,
           recentEntries: pastWeekEntries,
           goalSummary: 'Active focus on mindfulness, daily focus, and personal balance',
-          moodSummary: 'Calm, thoughtful, and steady',
-          locationSummary: 'Quiet personal workspace'
+          moodSummary: 'Calm, thoughtful, and steady'
         })
       });
 

@@ -16,12 +16,12 @@ const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-// Model Fallback Ladder (Verified supported models)
+// Model Fallback Ladder (Verified resilient ladder per Directive #6)
 const MODEL_FALLBACK_LADDER = [
-  "gemini-3.7-flash",
+  "gemini-3.6-flash",
   "gemini-3.1-flash-lite",
   "gemini-flash-latest",
-  "gemini-3.1-pro-preview"
+  "gemini-3.7-flash"
 ];
 
 // Lazy initialization of Gemini client
@@ -381,7 +381,6 @@ app.all("/jobs/weekly-synthesis", async (req: Request, res: Response): Promise<v
     const recentEntries = (req.body && Array.isArray(req.body.recentEntries)) ? req.body.recentEntries : [];
     const goalSummary = (req.body && typeof req.body.goalSummary === "string") ? req.body.goalSummary : "Active goals in progress";
     const moodSummary = (req.body && typeof req.body.moodSummary === "string") ? req.body.moodSummary : "Balanced and reflective";
-    const locationSummary = (req.body && typeof req.body.locationSummary === "string") ? req.body.locationSummary : "Various calm environments";
 
     // Read-only tools/data context
     const dataContext = `
@@ -390,7 +389,6 @@ User ID: ${userId}
 Recent Entries (Past 7 Days): ${recentEntries.length > 0 ? JSON.stringify(recentEntries) : "3 reflective entries on work, balance, and learning"}
 Goal Progress State: ${goalSummary}
 Mood Trend Analysis: ${moodSummary}
-Location Patterns: ${locationSummary}
 `;
 
     const systemInstruction = `You are the Sunday Synthesis Autonomous Agent for a personal reflection journal.

@@ -619,7 +619,6 @@ export function formatEntriesAsJSON(
       aiMode: entry.aiMode,
       createdAt: entry.createdAt,
       updatedAt: entry.updatedAt,
-      location: entry.location || null,
       summary: entry.summary || null,
       turns: entry.turns || [],
     }))

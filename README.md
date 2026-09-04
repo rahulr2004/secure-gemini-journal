@@ -49,9 +49,9 @@ This application adheres strictly to the **5 Threat Zones** model and the **OWAS
 1. **Google Federated Authentication**: Instant, passwordless sign-in with persistent local sessions and user profile management.
 2. **Multi-Turn Adaptive AI Journaling**: Conversational dialogue with Gemini across 4 specialized modes (`Reflection`, `Summary`, `Brainstorm`, `Advice`).
 3. **Voice-to-Text Dictation**: Native Web Speech API integration allowing hands-free stream-of-consciousness journaling.
-4. **Sanctuary Location Picker**: Link reflections to GPS coordinates or curated mindfulness sanctuaries with top-level modal isolation.
-5. **Interactive 30-Day Trends & Mood Analytics**: Dynamic SVG analytics chart powered by Recharts visualizing entry cadence, mood index, and dialogue volume.
-6. **Smart Search & Date Filtering**: Search across titles, tags, dialogue, and sanctuaries with customizable date ranges.
+4. **Dynamic AI Synthesis & Insights**: Generate structured takeaways, key themes, and actionable next steps.
+5. **Interactive 30-Day Trends & Mood Analytics**: Dynamic analytics chart powered by Recharts visualizing entry cadence, mood index, and dialogue volume.
+6. **Smart Search & Date Filtering**: Search across titles, tags, and reflection dialogue with customizable date ranges.
 7. **Sunday Synthesis Autonomous Agent**: Scheduled weekly reflection synthesis proposals with dismissible user acceptance.
 8. **Goal Milestones & AI Memory Vault**: Goal breakdown coaching and private fact memory extraction.
 9. **Full Vault Export**: One-click download of all journal history in Markdown/Plain Text or structured JSON.
@@ -209,7 +209,7 @@ npm run build
 1. **Sign In**: Launch the app and click **"Continue with Google"** to authenticate via Firebase Auth.
 2. **Write & Dictate**: Create a new reflection session, choose an AI Mode, click **"Speak"** to dictate or type your reflection, and send.
 3. **Multi-Turn Context**: Reply with a follow-up query to test context retention across turns.
-4. **Attach Sanctuary**: Click **"Add Location"** to attach GPS or preset sanctuary locations.
+4. **AI Reasoning Modes**: Switch between Reflection, Summary, Brainstorm, and Advice modes to see dynamic responses.
 5. **AI Synthesis**: Click **"Generate AI Summary"** to produce an overarching reflection summary.
 6. **Goal Coach & Memory Vault**: Open the Goals and Memories modals to test goal planning and personal memory extraction.
 7. **Filter & Analytics**: Use the search bar, date range picker, and 30-day analytics chart to review trends.
