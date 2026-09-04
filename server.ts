@@ -1,16 +1,13 @@
 import express, { Request, Response } from "express";
 import path from "path";
-import { fileURLToPath } from "url";
+import fs from "fs";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const app = express();
-const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+const PORT = 3000;
 
 // Mount body parsers before API routes
 app.use(express.json({ limit: "10mb" }));
@@ -933,7 +930,11 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.join(process.cwd(), "dist");
+    const distPath = fs.existsSync(path.join(process.cwd(), "dist", "index.html"))
+      ? path.join(process.cwd(), "dist")
+      : (typeof __dirname !== "undefined" && fs.existsSync(path.join(__dirname, "index.html")))
+        ? __dirname
+        : path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
     app.get("*", (_req: Request, res: Response) => {
       res.sendFile(path.join(distPath, "index.html"));

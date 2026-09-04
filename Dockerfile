@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Copy dependency definitions
 COPY package*.json ./
-RUN npm ci
+RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
 # Copy source files and build
 COPY . .
@@ -16,11 +16,11 @@ FROM node:20-slim AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
-ENV PORT=8080
+ENV PORT=3000
 
 # Copy package files and install production dependencies
 COPY package*.json ./
-RUN npm ci --only=production
+RUN if [ -f package-lock.json ]; then npm ci --omit=dev; else npm install --omit=dev; fi
 
 # Copy compiled frontend and bundled server from builder
 COPY --from=builder /app/dist ./dist
@@ -28,6 +28,6 @@ COPY --from=builder /app/dist ./dist
 # Security: Run as unprivileged node user
 USER node
 
-EXPOSE 8080
+EXPOSE 3000
 
 CMD ["node", "dist/server.cjs"]
